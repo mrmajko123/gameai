@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameAI - Sign Up</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: #1a1a1a;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      color: #00ff99;
+      margin: 0;
+    }
+    nav a {
+      color: #f0f0f0;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #00ff99;
+    }
+    .signup-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    .signup-box {
+      background: #1a1a1a;
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      width: 100%;
+      max-width: 400px;
+    }
+    .signup-box h2 {
+      color: #00ff99;
+      margin-bottom: 20px;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #333;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin: 10px 0;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #444;
+    }
+    .btn img {
+      width: 20px;
+      height: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 15px;
+    }
+    input {
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+    }
+    button {
+      background: #00ff99;
+      color: #0d0d0d;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #00cc77;
+    }
+    hr {
+      border: 0.5px solid #333;
+      margin: 20px 0;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+      <a href="game.ai.html" style="text-decoration:none;">
+        <h1 style="cursor:pointer; margin:0; color:#00ff99;">GameAi</h1>
+      </a>
+    <nav>
+      <a href="http://127.0.0.1:3002/game.ai.html">Home</a>
+      <a href="http://127.0.0.1:3002/feuters.html">Features</a>
+      <a href="http://127.0.0.1:3002/download.html">Download</a>
+      <a href="http://127.0.0.1:3002/contact.html">Contact</a>
+      <a href="http://127.0.0.1:3002/login.html">login</a>
+    </nav>
+  </header>
+
+  <div class="signup-container">
+    <div class="signup-box">
+      <h2>Create Your GameAI Account</h2>
+
+      <!-- Social Sign-Up Buttons -->
+      <div id="social-signup">
+        <div class="btn" onclick="signupGoogle()">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google"> 
+          Sign up with Google
+        </div>
+        <div class="btn" onclick="signupFacebook()">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" alt="Facebook"> 
+          Sign up with Facebook
+        </div>
+        <div class="btn" onclick="signupMicrosoft()">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoft/microsoft-original.svg" alt="Microsoft"> 
+          Sign up with Microsoft
+        </div>
+        <div class="btn" onclick="signupGitHub()">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"> 
+          Sign up with GitHub
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- Email + Password Sign-Up -->
+      <form id="signup-form">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Sign Up with Email</button>
+      </form>
+
+      <p style="margin-top: 10px; font-size: 0.9rem;">
+        Already have an account? <a href="login.html" style="color:#00ff99;">Login</a>
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 GameAI. All rights reserved.</p>
+  </footer>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script>
+    // TODO: Replace with your Firebase config
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Social Sign-Up functions
+    function signupGoogle() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider)
+        .then(res => alert("Signed up as " + res.user.displayName))
+        .catch(err => alert(err.message));
+    }
+
+    function signupFacebook() {
+      const provider = new firebase.auth.FacebookAuthProvider();
+      auth.signInWithPopup(provider)
+        .then(res => alert("Signed up as " + res.user.displayName))
+        .catch(err => alert(err.message));
+    }
+
+    function signupMicrosoft() {
+      const provider = new firebase.auth.OAuthProvider('microsoft.com');
+      auth.signInWithPopup(provider)
+        .then(res => alert("Signed up as " + res.user.displayName))
+        .catch(err => alert(err.message));
+    }
+
+    function signupGitHub() {
+      const provider = new firebase.auth.GithubAuthProvider();
+      auth.signInWithPopup(provider)
+        .then(res => alert("Signed up as " + res.user.displayName))
+        .catch(err => alert(err.message));
+    }
+
+    // Email + Password Sign-Up
+    document.getElementById("signup-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(res => {
+          return res.user.updateProfile({ displayName: name });
+        })
+        .then(() => {
+          alert("Account created successfully!");
+          window.location.href = "login.html";
+        })
+        .catch(err => alert(err.message));
+    });
+  </script>
+</body>
+</html>

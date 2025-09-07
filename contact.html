@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Assistant App - Contact</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: #1a1a1a;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      color: #00ff99;
+      margin: 0;
+    }
+    nav a {
+      color: #f0f0f0;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #00ff99;
+    }
+    .contact-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 50px 20px;
+    }
+    .contact-box {
+      background: #1a1a1a;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+    }
+    .contact-box h2 {
+      color: #00ff99;
+      margin-bottom: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    input, textarea {
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      width: 100%;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    button {
+      background: #00ff99;
+      color: #0d0d0d;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #00cc77;
+    }
+    .info {
+      margin-top: 30px;
+      text-align: left;
+      line-height: 1.6;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="game.ai.html" style="text-decoration:none;">
+      <h1 style="cursor:pointer; margin:0; color:#00ff99;">GameAi</h1>
+    </a>
+    <nav>
+      <a href="http://127.0.0.1:3002/game.ai.html">Home</a>
+      <a href="http://127.0.0.1:3002/feuters.html">Features</a>
+      <a href="http://127.0.0.1:3002/download.html">Download</a>
+      <a href="http://127.0.0.1:3002/contact.html">Contact</a>
+      <a href="http://127.0.0.1:3002/login.html">login</a>
+    </nav>
+  </header>
+
+  <div class="contact-container">
+    <div class="contact-box">
+      <h2>Contact Us</h2>
+      <form id="contact-form">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+
+      <div class="info">
+        <h3>Our Info</h3>
+        <p><strong>Company:</strong> GameAi Inc.</p>
+        <p><strong>Email:</strong> info@gameai.com</p>
+        <p><strong>Phone:</strong> +386 31 617 005</p>
+        <p><strong>Address:</strong> Smetanova 6, 2000 Maribor</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 GameAi. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById("contact-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Thank you! Your message has been sent.");
+      // Here you can add functionality to send the form to your backend
+      document.getElementById("contact-form").reset();
+    });
+  </script>
+
+</body>
+</html>
