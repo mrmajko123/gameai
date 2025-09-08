@@ -160,41 +160,25 @@
   </footer>
 
   <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src=import { initializeApp } from "firebase/app"></script>
+  <script src=import { getAnalytics } from "firebase/analytics"></script>
   <script>
     // TODO: Replace with your Firebase config
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
+      apiKey: "AIzaSyDNTfz4LpLtHcnO0T1n_UdZ16FfFJ0HIgg",
+      authDomain: "gameai-f96fa.firebaseapp.com",
+      projectId: "gameai-f96fa",
+      storageBucket: "gameai-f96fa.firebasestorage.app",
+      messagingSenderId: "1015754197748",
+      appId: "1:1015754197748:web:602b2cf3b24acbea02aca1"
     };
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
 
     // Google login
     function loginGoogle() {
       const provider = new firebase.auth.GoogleAuthProvider();
-      auth.signInWithPopup(provider).then(res => {
-        alert("Logged in as " + res.user.email);
-      }).catch(err => alert(err.message));
-    }
-
-    // Facebook login
-    function loginFacebook() {
-      const provider = new firebase.auth.FacebookAuthProvider();
-      auth.signInWithPopup(provider).then(res => {
-        alert("Logged in as " + res.user.email);
-      }).catch(err => alert(err.message));
-    }
-
-    // Microsoft login (uses OAuth with generic provider)
-    function loginMicrosoft() {
-      const provider = new firebase.auth.OAuthProvider('microsoft.com');
       auth.signInWithPopup(provider).then(res => {
         alert("Logged in as " + res.user.email);
       }).catch(err => alert(err.message));
@@ -223,6 +207,7 @@
   </script>
 </body>
 </html>
+
 
 
 
