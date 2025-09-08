@@ -184,22 +184,6 @@
       }).catch(err => alert(err.message));
     }
 
-    // Facebook login
-    function loginFacebook() {
-      const provider = new firebase.auth.FacebookAuthProvider();
-      auth.signInWithPopup(provider).then(res => {
-        alert("Logged in as " + res.user.email);
-      }).catch(err => alert(err.message));
-    }
-
-    // Microsoft login (uses OAuth with generic provider)
-    function loginMicrosoft() {
-      const provider = new firebase.auth.OAuthProvider('microsoft.com');
-      auth.signInWithPopup(provider).then(res => {
-        alert("Logged in as " + res.user.email);
-      }).catch(err => alert(err.message));
-    }
-
     // GitHub login
     function loginGitHub() {
       const provider = new firebase.auth.GithubAuthProvider();
@@ -223,6 +207,7 @@
   </script>
 </body>
 </html>
+
 
 
 
