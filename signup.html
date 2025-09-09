@@ -183,26 +183,6 @@
         .catch(err => alert(err.message));
     }
 
-    function signupFacebook() {
-      const provider = new firebase.auth.FacebookAuthProvider();
-      auth.signInWithPopup(provider)
-        .then(res => alert("Signed up as " + res.user.displayName))
-        .catch(err => alert(err.message));
-    }
-
-    function signupMicrosoft() {
-      const provider = new firebase.auth.OAuthProvider('microsoft.com');
-      auth.signInWithPopup(provider)
-        .then(res => alert("Signed up as " + res.user.displayName))
-        .catch(err => alert(err.message));
-    }
-
-    function signupGitHub() {
-      const provider = new firebase.auth.GithubAuthProvider();
-      auth.signInWithPopup(provider)
-        .then(res => alert("Signed up as " + res.user.displayName))
-        .catch(err => alert(err.message));
-    }
 
     // Email + Password Sign-Up
     document.getElementById("signup-form").addEventListener("submit", e => {
@@ -224,6 +204,7 @@
   </script>
 </body>
 </html>
+
 
 
 
