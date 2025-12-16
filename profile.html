@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameAI - Profile</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0d0d0d;
+    color: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    background: #1a1a1a;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header h1 { color: #00ff99; margin: 0; }
+  nav a {
+    color: #f0f0f0;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+  }
+  nav a:hover { color: #00ff99; }
+
+  .profile-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+
+  .profile-box {
+    background: #1a1a1a;
+    padding: 40px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+  }
+
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #00ff99;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 8px;
+    border: none;
+    background: #00ff99;
+    color: #0d0d0d;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  button:hover { background: #00cc77; }
+
+  /* 🔥 LOGOUT BUTTON STYLE */
+  .logout-btn {
+    background: #333;
+    color: #fff;
+  }
+  .logout-btn:hover {
+    background: #444;
+  }
+
+  footer {
+    background: #111;
+    text-align: center;
+    padding: 20px;
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html" style="text-decoration:none;">
+    <h1>GameAI</h1>
+  </a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="feuters.html">Features</a>
+    <a href="download.html">Download</a>
+    <a href="contact.html">Contact</a>
+    <a href="profile.html">Profile</a>
+  </nav>
+</header>
+
+<div class="profile-container">
+  <div class="profile-box">
+
+    <img id="photo" class="profile-pic" src="https://via.placeholder.com/100">
+    <h2 id="username">Loading...</h2>
+    <p id="useremail"></p>
+
+    <hr style="border:0.5px solid #333; margin:20px 0;">
+
+    <input type="text" id="newName" placeholder="Display name">
+    <input type="url" id="newPhoto" placeholder="Profile image URL">
+    <input type="email" id="newEmail" placeholder="Email">
+    <input type="password" id="newPassword" placeholder="New password (optional)">
+
+    <button onclick="saveAll()">Save Changes</button>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+
+  </div>
+</div>
+
+<footer>
+  © 2025 GameAI. All rights reserved.
+</footer>
+
+<!-- 🔥 FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  updateProfile,
+  updateEmail,
+  updatePassword,
+  signOut
+} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDNTfz4LpLtHcnO0T1n_UdZ16FfFJ0HIgg",
+  authDomain: "gameai-f96fa.firebaseapp.com",
+  projectId: "gameai-f96fa",
+  storageBucket: "gameai-f96fa.appspot.com",
+  messagingSenderId: "1015754197748",
+  appId: "1:1015754197748:web:602b2cf3b24acbea02aca1"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+let currentUser;
+
+onAuthStateChanged(auth, user => {
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
+  currentUser = user;
+  username.textContent = user.displayName || "No name";
+  useremail.textContent = user.email;
+  photo.src = user.photoURL || "https://via.placeholder.com/100";
+
+  newName.value = user.displayName || "";
+  newEmail.value = user.email;
+  newPhoto.value = user.photoURL || "";
+});
+
+window.saveAll = async () => {
+  try {
+    await updateProfile(currentUser, {
+      displayName: newName.value || currentUser.displayName,
+      photoURL: newPhoto.value || currentUser.photoURL
+    });
+
+    if (newEmail.value !== currentUser.email) {
+      await updateEmail(currentUser, newEmail.value);
+    }
+
+    if (newPassword.value) {
+      await updatePassword(currentUser, newPassword.value);
+    }
+
+    alert("Profile updated successfully");
+    location.reload();
+  } catch (err) {
+    alert(err.code + " — please re-login if required");
+  }
+};
+
+window.logout = async () => {
+  await signOut(auth);
+  window.location.href = "login.html";
+};
+
+const username = document.getElementById("username");
+const useremail = document.getElementById("useremail");
+const newName = document.getElementById("newName");
+const newPhoto = document.getElementById("newPhoto");
+const newEmail = document.getElementById("newEmail");
+const newPassword = document.getElementById("newPassword");
+const photo = document.getElementById("photo");
+</script>
+
+</body>
+</html>
