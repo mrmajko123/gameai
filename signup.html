@@ -98,14 +98,19 @@
 
 <body>
 
+<!-- ✅ POPRAVLJEN HEADER -->
 <header>
   <a href="index.html" style="text-decoration:none;">
     <h1>GameAI</h1>
   </a>
   <nav>
-    <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
-    <a href="signup.html">Signup</a>
+      <a href="index.html">Home</a>
+      <a href="feuters.html">Features</a>
+      <a href="download.html">Download</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html"> Signup</a>
+      <a href="profile.html"> Profile</a>
   </nav>
 </header>
 
@@ -162,7 +167,6 @@
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
 
-  // Google Sign Up
   window.signupGoogle = function () {
     signInWithPopup(auth, provider)
       .then(result => {
@@ -170,32 +174,28 @@
         window.location.href = "profile.html";
       })
       .catch(error => {
-        console.error(error);
         alert(error.code + " — " + error.message);
       });
   };
 
-  // Email Sign Up
   document.getElementById("signup-form").addEventListener("submit", async (e) => {
     e.preventDefault();
-
-    const name = nameInput.value;
-    const email = emailInput.value;
-    const password = passwordInput.value;
-
     try {
-      const userCred = await createUserWithEmailAndPassword(auth, email, password);
-      await updateProfile(userCred.user, { displayName: name });
-      alert("Account created!");
+      const userCred = await createUserWithEmailAndPassword(
+        auth,
+        email.value,
+        password.value
+      );
+      await updateProfile(userCred.user, { displayName: name.value });
       window.location.href = "login.html";
     } catch (err) {
       alert(err.code + " — " + err.message);
     }
   });
 
-  const nameInput = document.getElementById("name");
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
+  const name = document.getElementById("name");
+  const email = document.getElementById("email");
+  const password = document.getElementById("password");
 </script>
 
 </body>
