@@ -4,88 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Game.ai - Features</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0d0d0d;
-      color: #f0f0f0;
-    }
-    header {
-      background: #1a1a1a;
-      padding: 15px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header h1 {
-      color: #00ff99;
-      margin: 0;
-    }
-    nav a {
-      color: #f0f0f0;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-    }
-    nav a:hover {
-      color: #00ff99;
-    }
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(135deg, #0d0d0d, #1f1f1f);
-    }
-    .hero h2 {
-      font-size: 2.5rem;
-      color: #00ff99;
-      margin-bottom: 15px;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 25px;
-    }
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 50px;
-    }
-    .feature {
-      background: #1a1a1a;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
-    .feature h3 {
-      color: #00ff99;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      margin-top: 40px;
-      font-size: 0.9rem;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
-    <a href="game.ai.html" style="text-decoration:none;">
-      <h1 style="cursor:pointer; margin:0; color:#00ff99;">GameAi</h1>
+    <a href="game.ai.html" class="logo-link">
+      <h1 class="logo">GameAi</h1>
     </a>
     <nav>
       <a href="index.html">Home</a>
       <a href="feuters.html">Features</a>
       <a href="download.html">Download</a>
       <a href="contact.html">Contact</a>
-      <a href="login.html">Login</a>
-      <a href="signup.html"> Signup</a>
-      <a href="profile.html"> Profile</a>
     </nav>
+    <button class="menu-toggle" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </header>
+
+  <aside class="mobile-sidebar" aria-hidden="true">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="feuters.html">Features</a>
+      <a href="download.html">Download</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </aside>
+  <div class="sidebar-overlay"></div>
 
   <section class="hero">
     <h2>Features</h2>
@@ -122,6 +70,8 @@
   <footer>
     <p>© 2025 GameAi. All rights reserved.</p>
   </footer>
+
+  <script src="script.js"></script>
 
 </body>
 </html>

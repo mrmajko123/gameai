@@ -4,104 +4,48 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GameAI - Download</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0d0d0d;
-      color: #f0f0f0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    header {
-      background: #1a1a1a;
-      padding: 15px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header h1 {
-      color: #00ff99;
-      margin: 0;
-    }
-    nav a {
-      color: #f0f0f0;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-    }
-    nav a:hover {
-      color: #00ff99;
-    }
-    .download-container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 50px 20px;
-      text-align: center;
-    }
-    .download-container h2 {
-      color: hwb(156 0% 0%);
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-    .download-container p {
-      font-size: 1.2rem;
-      margin-bottom: 40px;
-    }
-    .download-btn {
-      background: #00ff99;
-      color: #0d0d0d;
-      font-size: 1.5rem;
-      font-weight: bold;
-      padding: 25px 60px;
-      border: none;
-      border-radius: 15px;
-      cursor: pointer;
-      transition: background 0.3s;
-      text-decoration: none;
-    }
-    .download-btn:hover {
-      background: #00cc77;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      font-size: 0.9rem;
-      margin-top: auto;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
-    <a href="game.ai.html" style="text-decoration:none;">
-      <h1 style="cursor:pointer; margin:0; color:#00ff99;">GameAi</h1>
+    <a href="game.ai.html" class="logo-link">
+      <h1 class="logo">GameAi</h1>
     </a>
     <nav>
       <a href="index.html">Home</a>
       <a href="feuters.html">Features</a>
       <a href="download.html">Download</a>
       <a href="contact.html">Contact</a>
-      <a href="login.html">Login</a>
-      <a href="signup.html"> Signup</a>
-    	<a href="profile.html"> Profile</a>
     </nav>
+    <button class="menu-toggle" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </header>
+
+    <aside class="mobile-sidebar" aria-hidden="true">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="feuters.html">Features</a>
+      <a href="download.html">Download</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </aside>
+  <div class="sidebar-overlay"></div>
 
   <div class="download-container">
     <h2>Download GameAI</h2>
     <p>Get the latest version of GameAI and enhance your gaming experience.</p>
-    <a href="#" class="download-btn">Download</a>
+    <a href="gameai.pdf" class="download-btn">Download</a>
   </div>
 
   <footer>
     <p>© 2025 GameAi. All rights reserved.</p>
   </footer>
+
+  <script src="script.js"></script>
 
 </body>
 </html>

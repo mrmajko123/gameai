@@ -4,116 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Game Assistant App - Contact</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0d0d0d;
-      color: #f0f0f0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    header {
-      background: #1a1a1a;
-      padding: 15px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header h1 {
-      color: #00ff99;
-      margin: 0;
-    }
-    nav a {
-      color: #f0f0f0;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-    }
-    nav a:hover {
-      color: #00ff99;
-    }
-    .contact-container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 50px 20px;
-    }
-    .contact-box {
-      background: #1a1a1a;
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      width: 100%;
-      max-width: 600px;
-      text-align: center;
-    }
-    .contact-box h2 {
-      color: #00ff99;
-      margin-bottom: 20px;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 20px;
-    }
-    input, textarea {
-      padding: 12px;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-      font-size: 1rem;
-      width: 100%;
-    }
-    textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-    button {
-      background: #00ff99;
-      color: #0d0d0d;
-      padding: 12px;
-      border-radius: 8px;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #00cc77;
-    }
-    .info {
-      margin-top: 30px;
-      text-align: left;
-      line-height: 1.6;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      font-size: 0.9rem;
-      margin-top: auto;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
-    <a href="game.ai.html" style="text-decoration:none;">
-      <h1 style="cursor:pointer; margin:0; color:#00ff99;">GameAi</h1>
+    <a href="game.ai.html" class="logo-link">
+      <h1 class="logo">GameAi</h1>
     </a>
     <nav>
       <a href="index.html">Home</a>
       <a href="feuters.html">Features</a>
       <a href="download.html">Download</a>
       <a href="contact.html">Contact</a>
-      <a href="login.html">Login</a>
-      <a href="signup.html"> Signup</a>
-      <a href="profile.html"> Profile</a>
     </nav>
+    <button class="menu-toggle" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </header>
 
   <div class="contact-container">
@@ -148,6 +57,18 @@
       document.getElementById("contact-form").reset();
     });
   </script>
+
+  <aside class="mobile-sidebar" aria-hidden="true">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="feuters.html">Features</a>
+      <a href="download.html">Download</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </aside>
+  <div class="sidebar-overlay"></div>
+
+  <script src="script.js"></script>
 
 </body>
 </html>
