@@ -1,5 +1,8 @@
 /* Consolidated styles for GameAI pages */
 /* Global */
+/* Make layout mobile-first and prevent cutoffs */
+* { box-sizing: border-box; }
+html, body { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -8,6 +11,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding-bottom: env(safe-area-inset-bottom, 16px);
 }
 
 a.logo-link { text-decoration: none; }
@@ -30,7 +34,7 @@ header h1 {
 nav {
   display: flex;
   align-items: center;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 nav a {
@@ -38,69 +42,36 @@ nav a {
   text-decoration: none;
   margin: 0 15px;
   font-weight: bold;
-  white-space: nowrap;
+  white-space: wrap;
 }
 nav a:hover {
   color: #00ff99;
 }
 
-/* Profile Dropdown */
-.profile-menu {
-  position: relative;
-  display: inline-block;
-}
-.profile-btn {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-.profile-btn img {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  margin-right: 8px;
-}
-.dropdown-content {
-  display: none;
-  position: absolute;
-  right: 0;
-  background: #1a1a1a;
-  min-width: 220px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-  border-radius: 8px;
-  padding: 10px;
-  z-index: 1000;
-}
-.dropdown-content p {
-  margin: 8px 0;
-  font-size: 0.9rem;
-  color: #f0f0f0;
-}
-.profile-menu:hover .dropdown-content {
-  display: block;
-}
+/* Profile dropdown and account-related pages were removed */
 
 /* Hero */
 .hero {
   text-align: center;
-  padding: 80px 20px;
+  padding: 56px 18px;
   background: linear-gradient(135deg, #0d0d0d, #1f1f1f);
+  word-break: break-word;
 }
 .hero h2 {
-  font-size: 2.5rem;
+  font-size: clamp(20px, 6vw, 36px);
   color: #00ff99;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 .hero p {
-  font-size: 1.2rem;
-  margin-bottom: 25px;
+  font-size: clamp(14px, 3.6vw, 18px);
+  margin-bottom: 18px;
 }
 
 /* Buttons */
 .btn {
   background: #00ff99;
   color: #0d0d0d;
-  padding: 12px 25px;
+  padding: 20px 40px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
@@ -111,7 +82,7 @@ nav a:hover {
 /* Features */
 .features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
   padding: 50px;
 }
@@ -145,7 +116,7 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 50px 20px;
+  padding: 40px 14px;
   text-align: center;
 }
 .download-container h2 {
@@ -180,7 +151,7 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 50px 20px;
+  padding: 36px 14px;
 }
 
 .contact-box {
@@ -240,58 +211,7 @@ button:hover {
   line-height: 1.6;
 }
 
-/* Login & Signup */
-.login-container,
-.signup-container {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-}
-
-.login-box,
-.signup-box {
-  background: #1a1a1a;
-  padding: 40px;
-  border-radius: 15px;
-  max-width: 400px;
-  width: 100%;
-  text-align: center;
-}
-
-.login-box h2,
-.signup-box h2 {
-  color: #00ff99;
-}
-
-.btn-auth {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  background: #333;
-  padding: 12px;
-  border-radius: 8px;
-  margin: 10px 0;
-  cursor: pointer;
-  font-weight: bold;
-  color: #fff;
-}
-
-.btn-auth:hover {
-  background: #444;
-}
-
-.btn-auth img {
-  width: 20px;
-}
-
-input {
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
-}
+/* Login and signup styles removed (pages deleted) */
 
 /* Utilities */
 .thin-hr {
@@ -305,57 +225,7 @@ input {
   color: #00ff99;
 }
 
-/* Profile page */
-.profile-container {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-}
-
-.profile-box {
-  background: #1a1a1a;
-  padding: 40px;
-  border-radius: 15px;
-  width: 100%;
-  max-width: 420px;
-  text-align: center;
-}
-
-.profile-pic {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 15px;
-  border: 3px solid #00ff99;
-}
-
-.profile-box input {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  border-radius: 8px;
-  border: none;
-  font-size: 1rem;
-}
-
-.profile-box button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 15px;
-  border-radius: 8px;
-  border: none;
-  background: #00ff99;
-  color: #0d0d0d;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.profile-box button:hover {
-  background: #00cc77;
-}
+/* Profile page styles removed (profile page deleted) */
 
 /* Logout button */
 .logout-btn {
@@ -374,8 +244,8 @@ input {
   border: none;
   cursor: pointer;
   padding: 6px;
-  width: 36px;
-  height: 28px;
+  width: 30px;
+  height: 20px;
   box-sizing: content-box;
   display: inline-flex;
   flex-direction: column;
@@ -436,7 +306,40 @@ input {
 @media (max-width: 768px) {
   nav { display: none; }
   .menu-toggle { display: inline-flex; }
-  header { padding: 12px 18px; }
+  header { padding: 10px 14px; }
+  .features { padding: 28px 12px; gap: 14px; }
+  .feature { padding: 16px; }
+  .hero { padding: 48px 12px; }
+  .download-container { padding: 36px 12px; }
+  .contact-container { padding: 28px 12px; }
+  .btn, .download-btn, button { width: 100%; box-sizing: border-box; }
+  .logo { font-size: 20px; }
+}
+
+/* Prefer aspect-ratio based behaviour: hide mobile menu on wide 16:9 layouts */
+@media (min-aspect-ratio: 16/9) {
+  /* desktop / wide landscape: always show nav links and hide hamburger/sidebar */
+  .menu-toggle, .mobile-sidebar, .sidebar-overlay { display: none !important; }
+  nav { display: flex !important; }
+}
+
+/* For portrait (9:16) ensure mobile menu is available and nav is hidden */
+@media (orientation: portrait) and (max-aspect-ratio: 9/16) {
+  nav { display: none !important; }
+  .menu-toggle { display: inline-flex !important; }
+}
+
+/* Portrait / mobile-tall (approx 9:16) specific tweaks */
+@media (orientation: portrait) and (max-width: 480px) {
+  header { padding-top: calc(env(safe-area-inset-top, 12px)); }
+  .hero { padding: 40px 12px; }
+  .hero h2 { margin-bottom: 10px; }
+  .features { grid-template-columns: 1fr; padding: 20px 12px; }
+  .feature { text-align: left; }
+  .download-btn { padding: 18px; font-size: 18px; border-radius: 12px; }
+  .contact-box { padding: 18px; }
+  input, textarea { font-size: 16px; }
+  .logo { font-size: 20px; }
 }
 
 /* When header is collapsed (nav doesn't fit) hide nav and show hamburger */
@@ -449,3 +352,90 @@ header.collapsed .menu-toggle {
 
 /* Prevent body scroll when sidebar open */
 .no-scroll { overflow: hidden; }
+
+/* Contact success overlay */
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,128,0,0.50);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms ease;
+  z-index: 2000;
+}
+.success-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.success-box {
+  background: rgba(0,160,70,0.85);
+  border: 1px solid rgba(0,200,100,0.60);
+  color: #eaffef;
+  padding: 16px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 220px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+}
+.success-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 26px;
+  background: #00b85a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,180,100,0.18);
+}
+.success-icon svg { width: 28px; height: 28px; fill: #07260a; }
+.success-text { font-weight: 800; color: #eaffef; font-size: 18px; }
+
+/* Contact failure overlay */
+.failure-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* darker dim for visibility */
+  background: rgba(0,0,0,0.50);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+  z-index: 2000;
+}
+.failure-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.failure-box {
+  background: rgba(220,50,50,0.85);
+  border: 1px solid rgba(255,70,70,0.60);
+  color: #fff;
+  padding: 12px 14px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: auto;
+  min-width: 220px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.5);
+}
+.failure-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+  background: #ff4747;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 14px rgba(255,0,0,0.16);
+}
+.failure-icon svg { width: 22px; height: 22px; fill: #fff; }
+.failure-text { font-weight: 800; color: #fff; font-size: 15px; }
+.failure-sub { color: #ffecec; font-size: 12px; margin-top: 2px; }

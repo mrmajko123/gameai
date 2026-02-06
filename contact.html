@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Game Assistant App - Contact</title>
+  <link rel="icon" href="game.ai.png" type="image/png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
-    <a href="game.ai.html" class="logo-link">
+    <a href="index.html" class="logo-link">
       <h1 class="logo">GameAi</h1>
     </a>
     <nav>
@@ -50,13 +51,77 @@
   </footer>
 
   <script>
-    document.getElementById("contact-form").addEventListener("submit", function(e) {
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
-      alert("Thank you! Your message has been sent.");
-      // Here you can add functionality to send the form to your backend
-      document.getElementById("contact-form").reset();
+      const btn = form.querySelector('button[type="submit"]');
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if (!name || !email || !message) return alert('Please fill all fields.');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, message })
+        });
+        const json = await res.json();
+        if (res.ok && json.ok) {
+          // show success overlay
+          const overlay = document.getElementById('success-overlay');
+          overlay.classList.add('visible');
+          form.reset();
+          // hide after 3 seconds
+          setTimeout(() => overlay.classList.remove('visible'), 3000);
+        } else {
+          // show failure overlay with error message
+          const f = document.getElementById('failure-overlay');
+          const fmsg = document.getElementById('failure-msg');
+          fmsg.textContent = (json.error || res.statusText || 'Failed to send message');
+          f.classList.add('visible');
+          setTimeout(() => f.classList.remove('visible'), 4000);
+        }
+      } catch (err) {
+        const f = document.getElementById('failure-overlay');
+        const fmsg = document.getElementById('failure-msg');
+        fmsg.textContent = err.message || 'Error sending message';
+        f.classList.add('visible');
+        setTimeout(() => f.classList.remove('visible'), 4000);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+      }
     });
   </script>
+
+  <!-- Success overlay -->
+  <div id="success-overlay" class="success-overlay" aria-hidden="true">
+    <div class="success-box" role="status">
+      <div class="success-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M9.00039 16.2L4.80039 12L3.40039 13.4L9.00039 19L21.0004 7L19.6004 5.6L9.00039 16.2Z"/>
+        </svg>
+      </div>
+      <div class="success-text">Message sent</div>
+    </div>
+  </div>
+
+  <!-- Failure overlay -->
+  <div id="failure-overlay" class="failure-overlay" aria-hidden="true" onclick="this.classList.remove('visible')">
+    <div class="failure-box" role="alert">
+      <div class="failure-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M18.3 5.71L12 12.01 5.7 5.71 4.29 7.12 10.59 13.41 4.29 19.71 5.7 21.12 12 14.82 18.3 21.12 19.71 19.71 13.41 13.41 19.71 7.12z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="failure-text">Message failed</div>
+        <div id="failure-msg" class="failure-sub">Could not send message.</div>
+      </div>
+    </div>
+  </div>
 
   <aside class="mobile-sidebar" aria-hidden="true">
     <nav>
